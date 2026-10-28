@@ -49,10 +49,20 @@ src/
 Returns `{ photos, loading, error }`. It fetches the Picsum list once on mount. A non-success HTTP response or invalid response data becomes an error message. An `AbortController` cancels the request if the component unmounts.
 
 ### `useReducer`
-The favourites reducer handles the `TOGGLE` action. If a photo is already favourited, it is removed; otherwise it is added. This keeps the add/remove state transition in one place. The initial state is loaded from `localStorage`, and an effect saves changes back to storage.
+The favourites reducer handles the `TOGGLE` action. If a photo is already favourited, it is removed; otherwise, it is added. This keeps the add/remove state transition in one place. The initial state is loaded from `localStorage`, and an effect saves changes back to storage.
 
 ### `useCallback`
 `handleSearchChange` is wrapped in `useCallback` so its function identity remains stable across renders. The favourite toggle handler is also stable. In this small app, the performance benefit is modest; it demonstrates the requested pattern and is useful when passing handlers to memoized child components or hooks that depend on stable callbacks.
 
 ### `useMemo`
 `filteredPhotos` is recalculated only when the fetched photos or search term changes, rather than on unrelated renders. `favouriteIds` is recalculated only when favourites change. For only 30 photos, the speed benefit is small, but it clearly isolates derived data.
+
+
+## Hardest part of the assignment
+
+Keeping favourites synchronized between useReducer and localStorage was the hardest part. I initialized the reducer with saved favourites and persisted updates so selections remain after a page refresh.
+
+## Assignment Submission Links
+
+#### GitHub link: https://github.com/sroy3333/celebrare-photo-gallery
+#### Video recording link: https://drive.google.com/drive/folders/1lQ2XYQ5FCWOLa9337XUSvBzlS49pyOV5?usp=drive_link
